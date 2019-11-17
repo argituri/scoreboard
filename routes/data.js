@@ -45,6 +45,8 @@ router.post('/',jsonParser, function(req, res){
             console.log(err);
             res.status(500).send(err);
         } else {*/
+    console.log("got request : " + req)
+    console.log("Adding " + req.body.name + ", " + req.body.score);
             if (req.body.add) {
                 con.query("INSERT INTO " + process.env.dbTableName + " VALUES (" + req.body.name + "," + req.body.score + ");", function (err, result, fields) {
                     if (err) throw err;
