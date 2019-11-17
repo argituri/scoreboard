@@ -18,9 +18,10 @@ router.get('/', function(req, res, next) {
     con.connect(function(err) {
         if (err) {
             console.log("db error...")
+            console.log(err);
             res.status(500).send(err);
         }
-        con.query("SELECT * FROM " + process.env.dbTableName, function (err, result, fields) {
+        con.query("SELECT * FROM " + process.env.dbTableName + ";", function (err, result, fields) {
             if (err) return ("Could not load data!");
             console.log(result);
             res.data(result).send();
@@ -30,7 +31,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/',jsonParser, function(req, res){
     if (req.body.add){
-        con.query("INSERT INTO " + process.env.dbTableName + " VALUES (" + req.body.name + "," + req.body.score + ")", function (err, result, fields) {
+        con.query("INSERT INTO " + process.env.dbTableName + " VALUES (" + req.body.name + "," + req.body.score + ");", function (err, result, fields) {
             if (err) throw err;
             console.log(result);
             res.data(result).send();
