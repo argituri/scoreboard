@@ -6,7 +6,7 @@ var jsonParser = bodyParser.json({ type: 'application/*+json'});
 
 var con = mysql.createConnection({
     host: process.env.dbAddr,
-    user: process.env.dbPort,
+    user: process.env.dbUser,
     password: process.env.dbPass,
     database: process.env.dbName
 });
