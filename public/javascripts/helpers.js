@@ -6,7 +6,10 @@ function send(addr, port){
     console.log("Adding to db: " + name + ", " + score);
     console.log("To url : " + url);
     $.post(url, {name, score}, "json")
-        .always(function(response) { console.log(response); })
+        .always(function(response) {
+            console.log(response);
+            $('#scoreTable').ajax.reload();
+        })
     /*$.post(, {name, score})
         .done(function( data ) {
             console.log( "call made " + data );

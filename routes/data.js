@@ -47,11 +47,13 @@ router.post('/',jsonParser, function(req, res){
         } else {*/
     console.log("got request : " + req)
     console.log("Adding " + req.body.name + ", " + req.body.score);
-            if (req.body.add) {
+            if (req.body.name && req.body.score) {
                 con.query("INSERT INTO " + process.env.dbTableName + " VALUES (" + req.body.name + "," + req.body.score + ");", function (err, result, fields) {
-                    if (err) throw err;
-                    console.log(result);
-                    res.data(result).send();
+                    if (err){throw err;} else {
+                        console.log(result);
+                        res.status(200).send("1");
+                    }
+
                 });
             }
        // }
