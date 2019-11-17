@@ -1,5 +1,6 @@
 extends layout
 
+
 block content
   h1= title
   p Welcome to the #{title}!
@@ -10,17 +11,17 @@ block content
           th(scope="col") Score
       tbody
         tr
-          td Example Name
-          td 120000
+          //td Example Name
+          //td 120000
     script.
       $(document).ready(function () {
         $('#scoreTable').DataTable(
                 {
-                  ajax: 'http://localhost:3000/data'
+                  ajax: 'http://localhost:#{port}/data'
                 }
         );
       });
-  form(action="#" onsubmit="send()")
+  form(action="#" onsubmit="send('"+{port}+"')")
     div.form-group
       label(for="nameInput") Name:
       input(type="text" class="form-control" id="nameInput" placeholder="Name")
@@ -28,4 +29,3 @@ block content
       label(for="scoreInput") Score:
       input(type="number" class="form-control" id="scoreInput" placeholder="Score")
     button(type="submit" class="btn btn-primary") Submit
-  button(class="btn btn-primary" onclick="test(\"moi\")")

@@ -15,21 +15,17 @@ var con = mysql.createConnection({
 /* GET players listing or add new player. */
 router.get('/', function(req, res, next) {
     console.log("GOT GET")
-    if (req.body.query){
-        con.connect(function(err) {
-            if (err) {
-                console.log("db error...")
-                throw err;
-            }
-            con.query("SELECT * FROM " + process.env.dbTableName, function (err, result, fields) {
-                if (err) throw err;
-                console.log(result);
-                res.data(result).send();
-            });
+    con.connect(function(err) {
+        if (err) {
+            console.log("db error...")
+            throw err;
+        }
+        con.query("SELECT * FROM " + process.env.dbTableName, function (err, result, fields) {
+            if (err) throw err;
+            console.log(result);
+            res.data(result).send();
         });
-    } else {
-        console.log("Weird request");
-    }
+    });
 });
 
 router.post('/',jsonParser, function(req, res){

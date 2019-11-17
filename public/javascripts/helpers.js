@@ -1,8 +1,9 @@
-function send(){
-    var name = Document.getElementById("nameInput").value;
-    var score = Document.getElementById("scoreInput").value;
+
+function send(port){
+    var name = document.getElementById("nameInput").value;
+    var score = document.getElementById("scoreInput").value;
     console.log("Adding to db: " + name + ", " + score);
-    $.post('localhost:3000/data',{name, score},(val, err) => {
+    $.post('http://localhost: ' + port + '/data',{name, score},(val, err) => {
         if (err){
             console.log("Err: " + err)
             alert(err);
