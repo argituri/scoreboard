@@ -18,10 +18,10 @@ router.get('/', function(req, res, next) {
     con.connect(function(err) {
         if (err) {
             console.log("db error...")
-            throw err;
+            return err
         }
         con.query("SELECT * FROM " + process.env.dbTableName, function (err, result, fields) {
-            if (err) throw err;
+            if (err) return ("Could not load data!");
             console.log(result);
             res.data(result).send();
         });
