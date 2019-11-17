@@ -17,14 +17,24 @@ router.get('/', function(req, res, next) {
     console.log("GOT GET")
     con.connect(function(err) {
         if (err) {
-            console.log("db error...")
+            console.log("db connection error...")
             console.log(err);
             res.status(500).send(err);
         }
         con.query("SELECT * FROM " + process.env.dbTableName + ";", function (err, result, fields) {
-            if (err) return ("Could not load data!");
-            console.log(result);
-            res.send(200, result);
+            if (err){
+                console.log("db select query error: " + err);
+                res.status(500).send(err);
+            } else {
+                var returnData = []
+                console.log(result);
+                result.forEach(entry => {
+                    console.log("Handling entry : " + entry);
+                    returnData.push(entry)
+                })
+                res.status(200).send(returnData);
+            }
+
         });
     });
 });
