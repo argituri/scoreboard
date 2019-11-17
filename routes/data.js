@@ -12,14 +12,13 @@ var con = mysql.createConnection({
 });
 
 
-/* GET players listing or add new player. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     console.log("GOT GET")
     con.connect(function(err) {
         if (err) {
             console.log("db connection error...")
             console.log(err);
-            res.status(500).send(err);
+            res.send(err);
         } else {
             con.query("SELECT * FROM " + process.env.dbTableName + ";", function (err, result, fields) {
                 if (err){
@@ -37,7 +36,6 @@ router.get('/', function(req, res, next) {
             });
         }
     });
-    con.close();
 });
 
 router.post('/',jsonParser, function(req, res){
@@ -56,7 +54,6 @@ router.post('/',jsonParser, function(req, res){
             }
         }
     });
-    con.close();
 })
 
 module.exports = router;
