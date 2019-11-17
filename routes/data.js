@@ -14,12 +14,12 @@ var con = mysql.createConnection({
 
 router.get('/', function(req, res) {
     console.log("GOT GET")
-    con.connect(function(err) {
+    /*con.connect(function(err) {
         if (err) {
             console.log("db connection error...")
             console.log(err);
             res.status(500).send(err);
-        } else {
+        } else {*/
             con.query("SELECT * FROM " + process.env.dbTableName + ";", function (err, result, fields) {
                 if (err){
                     console.log("db select query error: " + err);
@@ -34,18 +34,17 @@ router.get('/', function(req, res) {
                     res.status(200).send(returnData);
                 }
             });
-        }
-    });
-    con.end();
+        //}
+    //});
 });
 
 router.post('/',jsonParser, function(req, res){
-    con.connect(function(err) {
+    /*con.connect(function(err) {
         if (err) {
             console.log("db connection error...")
             console.log(err);
             res.status(500).send(err);
-        } else {
+        } else {*/
             if (req.body.add) {
                 con.query("INSERT INTO " + process.env.dbTableName + " VALUES (" + req.body.name + "," + req.body.score + ");", function (err, result, fields) {
                     if (err) throw err;
@@ -53,9 +52,8 @@ router.post('/',jsonParser, function(req, res){
                     res.data(result).send();
                 });
             }
-        }
-    });
-    con.end();
+       // }
+    //});
 })
 
 module.exports = router;
