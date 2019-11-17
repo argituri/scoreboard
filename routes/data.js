@@ -26,11 +26,11 @@ router.get('/', function(req, res, next) {
                 console.log("db select query error: " + err);
                 res.status(500).send(err);
             } else {
-                var returnData = []
+                var returnData = {data: []}
                 console.log(result);
                 result.forEach(entry => {
                     console.log("Handling entry : " + entry);
-                    returnData.push(entry)
+                    returnData.data.push(entry)
                 })
                 res.status(200).send(returnData);
             }
