@@ -2,7 +2,7 @@
 function send(addr, port){
     var name = document.getElementById("nameInput").value;
     var score = document.getElementById("scoreInput").value;
-    var url = 'http://' + addr +  ': ' + port + '/data'
+    var url = 'http://' + addr +  ':' + port + '/data'
     console.log("Adding to db: " + name + ", " + score);
     console.log("To url : " + url);
     $.post(url, {name, score}, "json")
