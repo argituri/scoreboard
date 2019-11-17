@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
     con.connect(function(err) {
         if (err) {
             console.log("db error...")
-            return err
+            res.status(500).send(err);
         }
         con.query("SELECT * FROM " + process.env.dbTableName, function (err, result, fields) {
             if (err) return ("Could not load data!");
