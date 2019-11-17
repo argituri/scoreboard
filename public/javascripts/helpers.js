@@ -8,21 +8,9 @@ function send(addr, port){
     $.post(url, {name, score}, "json")
         .always(function(response) {
             console.log(response);
-            $('#scoreTable').ajax.reload();
+            //$('#scoreTable').ajax.reload();   Reload only table for higher efficiency
+            location.reload();
         })
-    /*$.post(, {name, score})
-        .done(function( data ) {
-            console.log( "call made " + data );
-        });
-    /*$.post('http://' + addr +  ': ' + port + '/data',{name, score},(val, err) => {
-        console.log("JQuery db adding callback activated")
-        if (err){
-            console.log("Err: " + err)
-            alert(err);
-        } else {
-            console.log("val : " + val);
-        }
-    });*/
 
 }
 
