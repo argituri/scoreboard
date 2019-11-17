@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
         con.query("SELECT * FROM " + process.env.dbTableName + ";", function (err, result, fields) {
             if (err) return ("Could not load data!");
             console.log(result);
-            res.data(result).send();
+            res.send(200, result);
         });
     });
 });
