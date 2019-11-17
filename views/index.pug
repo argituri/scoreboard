@@ -17,7 +17,7 @@ block content
       $(document).ready(function () {
         $('#scoreTable').DataTable(
                 {
-                  ajax: 'http://localhost:#{port}/data'
+                  ajax: 'http://#{helperAddr}:#{port}/data'
                 }
         );
       });
