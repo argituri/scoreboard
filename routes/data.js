@@ -37,16 +37,25 @@ router.get('/', function(req, res, next) {
 
         });
     });
+    con.close();
 });
 
 router.post('/',jsonParser, function(req, res){
-    if (req.body.add){
-        con.query("INSERT INTO " + process.env.dbTableName + " VALUES (" + req.body.name + "," + req.body.score + ");", function (err, result, fields) {
-            if (err) throw err;
-            console.log(result);
-            res.data(result).send();
-        });
-    }
+    con.connect(function(err) {
+        if (err) {
+            console.log("db connection error...")
+            console.log(err);
+            res.status(500).send(err);
+        }
+        if (req.body.add) {
+            con.query("INSERT INTO " + process.env.dbTableName + " VALUES (" + req.body.name + "," + req.body.score + ");", function (err, result, fields) {
+                if (err) throw err;
+                console.log(result);
+                res.data(result).send();
+            });
+        }
+    });
+    con.close();
 })
 
 module.exports = router;
