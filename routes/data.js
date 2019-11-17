@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
         if (err) {
             console.log("db connection error...")
             console.log(err);
-            res.send(err);
+            res.status(500).send(err);
         } else {
             con.query("SELECT * FROM " + process.env.dbTableName + ";", function (err, result, fields) {
                 if (err){
@@ -36,6 +36,7 @@ router.get('/', function(req, res) {
             });
         }
     });
+    con.end();
 });
 
 router.post('/',jsonParser, function(req, res){
@@ -54,6 +55,7 @@ router.post('/',jsonParser, function(req, res){
             }
         }
     });
+    con.end();
 })
 
 module.exports = router;
