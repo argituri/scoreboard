@@ -29,7 +29,7 @@ router.get('/', function(req, res) {
                     console.log(result);
                     result.forEach(entry => {
                         console.log("Handling entry : " + entry);
-                        returnData.data.push(entry)
+                        returnData.data.push([entry.name, entry.score])
                     })
                     res.status(200).send(returnData);
                 }
